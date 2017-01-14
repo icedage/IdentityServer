@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <title>Basic TextBox - jQuery EasyUI Demo</title>
+    <link href="~/easyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/easyUI/themes/default/easyui.css" rel="stylesheet" />
+    <script src="~/easyUI/jquery.easyui.min.js"></script>
+    <script src="~/easyUI/jquery.min.js"></script>
+    <link href="~/easyUI/demo/demo.css" rel="stylesheet" />
+</head>
+<body>
+    <h2>Basic TextBox</h2>
+    <div style="margin:70px 0;"></div>
+    <div class="easyui-panel" title="New User" style="width:100%;max-width:400px;padding:30px 60px;">
+        <div style="margin-bottom:20px">
+            <input class="easyui-textbox" id="FirstName" label="First Name:" labelPosition="top" style="width:100%;height:52px">
+        </div>
+        <div style="margin-bottom:20px">
+            <input class="easyui-textbox" id="LastName" label="Last Name:" labelPosition="top" style="width:100%;height:52px">
+        </div>
+        <div style="margin-bottom:20px">
+            <input class="easyui-textbox" id="Email" label="Email:" labelPosition="top" style="width:100%;height:52px">
+        </div>
+        <div style="margin-bottom:20px">
+            <input class="easyui-textbox" id="Username" label="Username:" labelPosition="top" style="width:100%;height:52px">
+        </div>
+        <div style="margin-bottom:20px">
+            <input class="easyui-textbox" id="Password" label="Password:" labelPosition="top" style="width:100%;height:52px">
+        </div>
+        <div>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="submitForm()" style="width:100%;height:32px">Register</a>
+        </div>
+    </div>
+    <script>
+        function submitForm() {
+
+            var user = {
+                FirstName: $("#FirstName").val(),
+                LastName: $("#LastName").val(),
+                Email: $("#Email").val(),
+                Username: $("#Username").val(),
+                Password: $("#Password").val()
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: "CreateAsync",
+                data: user,
+                dataType: "application/json",
+                success: function (data) {
+                    window.location = '/users/users';
+                }
+            });
+        }
+    </script> 
+</body>
+</html>

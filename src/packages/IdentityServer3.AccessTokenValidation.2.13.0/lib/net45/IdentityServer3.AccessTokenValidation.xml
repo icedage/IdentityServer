@@ -1,0 +1,520 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IdentityServer3.AccessTokenValidation</name>
+    </assembly>
+    <members>
+        <member name="T:IdentityServer3.AccessTokenValidation.IdentityServerOAuthBearerAuthenticationOptions">
+            <summary>
+            Options that wraps OAuth2BearerAuthenticationOptions for local and remote token validation
+            </summary>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerOAuthBearerAuthenticationOptions.TokenProvider">
+            <summary>
+            Gets or sets the token provider (set this if the access token is NOT on the authorization header using a Bearer scheme.
+            </summary>
+            <value>
+            The token provider.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerOAuthBearerAuthenticationOptions.LocalValidationOptions">
+            <summary>
+            Gets or sets the local validation options.
+            </summary>
+            <value>
+            The local validation options.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerOAuthBearerAuthenticationOptions.EndpointValidationOptions">
+            <summary>
+            Gets or sets the endpoint validation options.
+            </summary>
+            <value>
+            The endpoint validation options.
+            </value>
+        </member>
+        <member name="T:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions">
+            <summary>
+            Configures identity server token validation
+            </summary>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions"/> class.
+            </summary>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.Authority">
+            <summary>
+            Gets or sets the base address of identity server (required)
+            </summary>
+            <value>
+            The authority.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.IssuerName">
+            <summary>
+            Gets or sets the name of the issuer (if you don't want to use the discovery document).
+            </summary>
+            <value>
+            The name of the issuer.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.SigningCertificate">
+            <summary>
+            Gets or sets the signing certificate (if you don't want to use the discovery document).
+            </summary>
+            <value>
+            The signing certificate.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.ValidationMode">
+            <summary>
+            Gets or sets the validation mode.
+            </summary>
+            <value>
+            The validation mode.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.BackchannelHttpHandler">
+            <summary>
+            Gets or sets the backchannel HTTP handler.
+            </summary>
+            <value>
+            The backchannel HTTP handler.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.BackchannelCertificateValidator">
+            <summary>
+            Gets or sets the backchannel certificate validator.
+            </summary>
+            <value>
+            The backchannel certificate validator.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.NameClaimType">
+            <summary>
+            Gets or sets the type of the name claim.
+            </summary>
+            <value>
+            The type of the name claim.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.RoleClaimType">
+            <summary>
+            Gets or sets the type of the role claim.
+            </summary>
+            <value>
+            The type of the role claim.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.TokenProvider">
+            <summary>
+            Gets or sets the token provider.
+            </summary>
+            <value>
+            The token provider.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.ValidationResultCacheDuration">
+            <summary>
+            Gets or sets the duration of the validation result cache.
+            </summary>
+            <value>
+            The duration of the validation result cache.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.EnableValidationResultCache">
+            <summary>
+            Gets or sets a value indicating whether to enable validation result caching.
+            </summary>
+            <value>
+            <c>true</c> if [enable validation result cache]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.ValidationResultCache">
+            <summary>
+            Gets or sets the validation result cache.
+            </summary>
+            <value>
+            The validation result cache.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.RequiredScopes">
+            <summary>
+            Gets or sets the required scopes.
+            </summary>
+            <value>
+            The required scopes.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.PreserveAccessToken">
+            <summary>
+            Gets or sets a value indicating whether to preserve the access token as a claim. Defaults to false.
+            </summary>
+            <value>
+              <c>true</c> if access token is preserved; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.ClientId">
+            <summary>
+            Gets or sets the client id for accessing the introspection endpoint.
+            In IdentityServer that would be the name of an authorized scope
+            </summary>
+            <value>
+            The client id.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.ClientSecret">
+            <summary>
+            Gets or sets the client secret for accessing the introspection endpoint.
+            In IdentityServer that is the secret associated with the authorized scope.
+            </summary>
+            <value>
+            The client secret.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.IntrospectionHttpHandler">
+            <summary>
+            Gets or sets the HTTP handler for accessing the introspection endoint.
+            </summary>
+            <value>
+            The introspection HTTP handler.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.DelayLoadMetadata">
+            <summary>
+            Indicates whether the discovery metadata sync to be delayed during the construction of 
+            the pipeline. <c>false</c> by default.
+            </summary>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions.IssuerSigningKeyResolver">
+            <summary>
+            Gets or sets a delegate that will be used to retreive <see cref="T:System.IdentityModel.Tokens.SecurityKey"/>(s) used for checking signatures.
+            
+            </summary>
+            
+            <remarks>
+            Each <see cref="T:System.IdentityModel.Tokens.SecurityKey"/> will be used to check the signature. Returning multiple key can be helpful when the <see cref="T:System.IdentityModel.Tokens.SecurityToken"/> does not contain a key identifier.
+                        This can occur when the issuer has multiple keys available. This sometimes occurs during key rollover.
+            </remarks>
+        </member>
+        <member name="T:Owin.IdentityServerBearerTokenValidationAppBuilderExtensions">
+            <summary>
+            AppBuilder extensions for identity server token validation
+            </summary>
+        </member>
+        <member name="M:Owin.IdentityServerBearerTokenValidationAppBuilderExtensions.UseIdentityServerBearerTokenAuthentication(Owin.IAppBuilder,IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions)">
+            <summary>
+            Add identity server token authentication to the pipeline.
+            </summary>
+            <param name="app">The application.</param>
+            <param name="options">The options.</param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenValidationMiddleware">
+            <summary>
+            Middleware for validating identityserver access tokens
+            </summary>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenValidationMiddleware.#ctor(System.Func{System.Collections.Generic.IDictionary{System.String,System.Object},System.Threading.Tasks.Task},Owin.IAppBuilder,IdentityServer3.AccessTokenValidation.IdentityServerOAuthBearerAuthenticationOptions,Microsoft.Owin.Logging.ILoggerFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenValidationMiddleware"/> class.
+            </summary>
+            <param name="next">The next middleware.</param>
+            <param name="app">The app builder.</param>
+            <param name="options">The options.</param>
+            <param name="loggerFactory">The logger factory.</param>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenValidationMiddleware.Invoke(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Invokes the middleware.
+            </summary>
+            <param name="environment">The environment.</param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityServer3.AccessTokenValidation.Cache">
+            <summary>
+            Cache implementation using System.Runtime.Cachine.MemoryCache
+            </summary>
+        </member>
+        <member name="T:IdentityServer3.AccessTokenValidation.ICache">
+            <summary>
+            Abstraction for a cache
+            </summary>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.ICache.Add(System.String,System.Object,System.DateTimeOffset)">
+            <summary>
+            Adds the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+            <param name="absoluteExpiration">The absolute expiration.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.ICache.Get(System.String)">
+            <summary>
+            Gets the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.Cache.Add(System.String,System.Object,System.DateTimeOffset)">
+            <summary>
+            Adds the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+            <param name="absoluteExpiration">The absolute expiration.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.Cache.Get(System.String)">
+            <summary>
+            Gets the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityServer3.AccessTokenValidation.Clock">
+            <summary>
+            Default clock implementation based on DateTimeOffset
+            </summary>
+        </member>
+        <member name="T:IdentityServer3.AccessTokenValidation.IClock">
+            <summary>
+            Interface to abstract the clock
+            </summary>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.IClock.UtcNow">
+            <summary>
+            Gets the UTC now.
+            </summary>
+            <value>
+            The UTC now.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.Clock.UtcNow">
+            <summary>
+            Gets the current UTC date/time 
+            </summary>
+            <value>
+            UtcNow
+            </value>
+        </member>
+        <member name="T:IdentityServer3.AccessTokenValidation.ContextTokenProvider">
+            <summary>
+            Token provider that returns the token already found by the identityserver token middleware
+            </summary>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.ContextTokenProvider.#ctor(Microsoft.Owin.Security.OAuth.IOAuthBearerAuthenticationProvider)">
+            <summary>
+            Creates a context token provider that wraps a user provided token provider.
+            </summary>
+            <param name="inner">The inner token provider</param>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.ContextTokenProvider.RequestToken(Microsoft.Owin.Security.OAuth.OAuthRequestTokenContext)">
+            <summary>
+            Invoked before the <see cref="T:System.Security.Claims.ClaimsIdentity" /> is created. Gives the application an
+            opportunity to find the identity from a different location, adjust, or reject the token.
+            </summary>
+            <param name="context">Contains the token string.</param>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task" /> representing the completed operation.
+            </returns>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.ContextTokenProvider.ApplyChallenge(Microsoft.Owin.Security.OAuth.OAuthChallengeContext)">
+            <summary>
+            Called each time a challenge is being sent to the client. By implementing this method the application
+            may modify the challenge as needed.
+            </summary>
+            <param name="context">Contains the default challenge.</param>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task"/> representing the completed operation.
+            </returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.ContextTokenProvider.ValidateIdentity(Microsoft.Owin.Security.OAuth.OAuthValidateIdentityContext)">
+            <summary>
+            Called each time a request identity has been validated by the middleware. By implementing this method the
+            application may alter or reject the identity which has arrived with the request.
+            </summary>
+            <param name="context">Contains information about the login session as well as the user <see cref="T:System.Security.Claims.ClaimsIdentity" />.</param>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task" /> representing the completed operation.
+            </returns>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.DiscoveryDocumentIssuerSecurityTokenProvider.Issuer">
+            <summary>
+            Gets the issuer the credentials are for.
+            </summary>
+            <value>
+            The issuer the credentials are for.
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.DiscoveryDocumentIssuerSecurityTokenProvider.Audience">
+            <value>
+            The identity server default audience
+            </value>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.DiscoveryDocumentIssuerSecurityTokenProvider.SecurityTokens">
+            <summary>
+            Gets all known security tokens.
+            </summary>
+            <value>
+            All known security tokens.
+            </value>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.EpochTimeExtensions.ToEpochTime(System.DateTime)">
+            <summary>
+            Converts the given date value to epoch time.
+            </summary>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.EpochTimeExtensions.ToEpochTime(System.DateTimeOffset)">
+            <summary>
+            Converts the given date value to epoch time.
+            </summary>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.EpochTimeExtensions.ToDateTimeFromEpoch(System.Int64)">
+            <summary>
+            Converts the given epoch time to a <see cref="T:System.DateTime"/> with <see cref="F:System.DateTimeKind.Utc"/> kind.
+            </summary>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.EpochTimeExtensions.ToDateTimeOffsetFromEpoch(System.Int64)">
+            <summary>
+            Converts the given epoch time to a UTC <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+        </member>
+        <member name="T:IdentityServer3.AccessTokenValidation.InMemoryValidationResultCache">
+            <summary>
+            In-memory cache for validation results
+            </summary>
+        </member>
+        <member name="T:IdentityServer3.AccessTokenValidation.IValidationResultCache">
+            <summary>
+            Interface for caching then token validation result
+            </summary>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.IValidationResultCache.AddAsync(System.String,System.Collections.Generic.IEnumerable{System.Security.Claims.Claim})">
+            <summary>
+            Add a validation result
+            </summary>
+            <param name="token">The token.</param>
+            <param name="claims">The claims.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.IValidationResultCache.GetAsync(System.String)">
+            <summary>
+            Retrieves a validation result
+            </summary>
+            <param name="token">The token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.InMemoryValidationResultCache.#ctor(IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IdentityServer3.AccessTokenValidation.InMemoryValidationResultCache"/> class.
+            </summary>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.InMemoryValidationResultCache.#ctor(IdentityServer3.AccessTokenValidation.IdentityServerBearerTokenAuthenticationOptions,IdentityServer3.AccessTokenValidation.IClock,IdentityServer3.AccessTokenValidation.ICache)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IdentityServer3.AccessTokenValidation.InMemoryValidationResultCache"/> class.
+            </summary>
+            <param name="options">The options.</param>
+            <param name="clock">The clock.</param>
+            <param name="cache">The cache.</param>
+            <exception cref="T:System.ArgumentNullException">
+            clock
+            or
+            options
+            or
+            cache
+            </exception>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.InMemoryValidationResultCache.AddAsync(System.String,System.Collections.Generic.IEnumerable{System.Security.Claims.Claim})">
+            <summary>
+            Add a validation result
+            </summary>
+            <param name="token">The token.</param>
+            <param name="claims">The claims.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.InMemoryValidationResultCache.GetAsync(System.String)">
+            <summary>
+            Retrieves a validation result
+            </summary>
+            <param name="token">The token.</param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityServer3.AccessTokenValidation.PreserveAccessTokenMiddleware">
+            <summary>
+            Middleware to check for scope claims in access token
+            </summary>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.PreserveAccessTokenMiddleware.#ctor(System.Func{System.Collections.Generic.IDictionary{System.String,System.Object},System.Threading.Tasks.Task})">
+            <summary>
+            Initializes a new instance of the <see cref="T:IdentityServer3.AccessTokenValidation.PreserveAccessTokenMiddleware"/> class.
+            </summary>
+            <param name="next">The next middleware.</param>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.PreserveAccessTokenMiddleware.Invoke(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Invokes the middleware.
+            </summary>
+            <param name="env">The OWIN environment.</param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityServer3.AccessTokenValidation.ScopeRequirementMiddleware">
+            <summary>
+            Middleware to check for scope claims in access token
+            </summary>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.ScopeRequirementMiddleware.#ctor(System.Func{System.Collections.Generic.IDictionary{System.String,System.Object},System.Threading.Tasks.Task},IdentityServer3.AccessTokenValidation.ScopeRequirementOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IdentityServer3.AccessTokenValidation.ScopeRequirementMiddleware"/> class.
+            </summary>
+            <param name="next">The next midleware.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:IdentityServer3.AccessTokenValidation.ScopeRequirementMiddleware.Invoke(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Invokes the middleware.
+            </summary>
+            <param name="env">The OWIN environment.</param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityServer3.AccessTokenValidation.ValidationMode">
+            <summary>
+            Enum for specifying where to validate the access token
+            </summary>
+        </member>
+        <member name="F:IdentityServer3.AccessTokenValidation.ValidationMode.Both">
+            <summary>
+            Use local validation for JWTs and the validation endpoint for reference tokens
+            </summary>
+        </member>
+        <member name="F:IdentityServer3.AccessTokenValidation.ValidationMode.Local">
+            <summary>
+            Use local validation only (only suitable for JWT tokens)
+            </summary>
+        </member>
+        <member name="F:IdentityServer3.AccessTokenValidation.ValidationMode.ValidationEndpoint">
+            <summary>
+            Use the validation endpoint only (works for both JWT and reference tokens)
+            </summary>
+        </member>
+        <member name="T:IdentityServer3.AccessTokenValidation.ScopeRequirementOptions">
+            <summary>
+            Options for validating scope claims
+            </summary>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.ScopeRequirementOptions.AuthenticationType">
+            <summary>
+            Specifies which authentication type should be used (uses primary identity if empty)
+            </summary>
+        </member>
+        <member name="P:IdentityServer3.AccessTokenValidation.ScopeRequirementOptions.RequiredScopes">
+            <summary>
+            Specifies the accepted scope values
+            </summary>
+        </member>
+    </members>
+</doc>
