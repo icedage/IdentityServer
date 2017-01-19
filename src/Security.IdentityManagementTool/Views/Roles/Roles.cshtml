@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Basic CRUD Application - jQuery EasyUI CRUD Demo</title>
-    <meta charset="UTF-8">
-    <title>Basic CRUD Application - jQuery EasyUI CRUD Demo</title>
-    @*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
     <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/color.css">
@@ -28,7 +25,6 @@
         </thead>
     </table>
     <div id="toolbar">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editRole()">Update Role</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyRole()">Remove Role</a>
     </div>
 
@@ -52,7 +48,7 @@
             if (row) {
                 $.messager.confirm('Confirm', 'Are you sure you want to destroy this user?', function (r) {
                     if (r) {
-                        $.post('/roles/Destroy', { id: row.Id }, function (result) {
+                        $.post('/roles/Delete', { id: row.Id }, function (result) {
                             if (result == "success") {
                                 $('#dg').datagrid('reload');    // reload the user data
                             } else {

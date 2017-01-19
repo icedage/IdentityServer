@@ -17,16 +17,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Identity Tool", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("IdentityManagement", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Users", "Users", "Users")</li>
+                    <li>@Html.ActionLink("New User", "Create", "Users")</li>
                     <li>@Html.ActionLink("New Role", "Create", "Roles")</li>
                     <li>@Html.ActionLink("Roles", "Roles", "Roles")</li>
                     <li>@Html.ActionLink("Log out", "LogOff", "Account")</li>
                 </ul>
-                @*@Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>

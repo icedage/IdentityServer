@@ -32,7 +32,7 @@ namespace Security.IdentityManagementTool.Controllers
             return View();
         }
 
-        [HttpDelete]
+       
         public ActionResult Delete(string id)
         {
             var role = AppRoleManager.FindById(id);

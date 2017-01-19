@@ -71,8 +71,7 @@ namespace Security.Tests.Client
         {
             var client = new TokenClient(Constants.TokenEndpoint, clientid, SecretApi);
 
-            
-            return  client.RequestResourceOwnerPasswordAsync(user.UserName, user.Password, "sampleApi").Result;
+            return  client.RequestResourceOwnerPasswordAsync(user.UserName, user.Password, "WebAPI").Result;
         }
     }
 }
