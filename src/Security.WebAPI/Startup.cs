@@ -16,7 +16,7 @@ namespace Security.WebAPI
             app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
             {
                 Authority = "https://localhost:44396/identity",
-                RequiredScopes = new[] { "sampleApi" },
+                RequiredScopes = new[] { "WebAPI" },
             });
 
             AntiForgeryConfig.UniqueClaimTypeIdentifier = IdentityServer3.Core.Constants.ClaimTypes.Subject;

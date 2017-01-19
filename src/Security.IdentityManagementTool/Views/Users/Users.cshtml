@@ -94,7 +94,7 @@
             if (row) {
                 $.messager.confirm('Confirm', 'Are you sure you want to destroy this user?', function (r) {
                     if (r) {
-                        $.post('/users/Destroy', { id: row.Id }, function (result) {
+                        $.post('/users/Delete', { id: row.Id }, function (result) {
                             if (result == "success") {
                                 $('#dg').datagrid('reload');    // reload the user data
                             } else {

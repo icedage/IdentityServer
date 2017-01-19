@@ -38,9 +38,13 @@ namespace Security.AuthorizationServer
                     {
                         "http://localhost:55112/"
                     },
+                     PostLogoutRedirectUris = new List<string>
+                    {
+                        "http://localhost:55112/"
+                    },
                     IdentityTokenLifetime = 360,
                     AccessTokenLifetime = 3600,
-                    AllowedScopes = new List<string>() { "openid", "profile" , "roles", "sampleApi" }
+                    AllowedScopes = new List<string>() { "openid", "profile" , "roles", "WebAPI" }
                 },
             };
         }

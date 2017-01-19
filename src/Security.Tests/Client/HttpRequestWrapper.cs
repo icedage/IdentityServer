@@ -7,7 +7,7 @@ using Security.Tests.Entities;
 
 namespace Security.Tests.Client
 {
-    public class HttpRequestWrapper 
+    public class HttpRequestWrapper
     {
         private readonly IRestRequest _request;
 
@@ -22,6 +22,13 @@ namespace Security.Tests.Client
             _request = new RestRequest {Method = method};
         }
 
+        public HttpRequestWrapper(string resource)
+        {
+            _client = new RestClient(resource);
+            _request = new RestRequest { Method = Method.GET };
+        }
+
+
         public HttpRequestWrapper AddParameter(string name, object value)
         {
             _request.AddParameter(name, value);
@@ -32,6 +39,7 @@ namespace Security.Tests.Client
         {
              _request.AddHeader("Accept", "application/json");
             _request.AddHeader("Content-Type", "application/json");
+           // _request.AddHeader("Content-Type", "application/json");
 
             if (body != null)
                 _request.AddJsonBody(body);
@@ -39,7 +47,19 @@ namespace Security.Tests.Client
             var response = _client.Execute(_request);
             return response;
         }
-        
+
+        public IRestResponse Execute(string token)
+        {
+            _request.AddHeader("Accept", "application/json");
+            _request.AddHeader("Content-Type", "application/json");
+            _request.AddHeader("Authentication", $"Bearer {token}");
+            // _request.AddHeader("Content-Type", "application/json");
+            
+
+            var response = _client.Execute(_request);
+            return response;
+        }
+
         public HttpRequestWrapper TokenizeRequest(User user, string clientid)
         {
             var token = GetToken(user, clientid).Result;
@@ -51,6 +71,7 @@ namespace Security.Tests.Client
         {
             var client = new TokenClient(Constants.TokenEndpoint, clientid, SecretApi);
 
+            
             return  client.RequestResourceOwnerPasswordAsync(user.UserName, user.Password, "sampleApi").Result;
         }
     }

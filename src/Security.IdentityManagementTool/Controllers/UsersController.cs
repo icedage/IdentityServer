@@ -1,29 +1,34 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Claims;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using RestSharp;
 using Security.IdentityManagementTool.Models;
+using Security.IdentityManagementTool.Filters;
 
 namespace Security.IdentityManagementTool.Controllers
 {
     public class UsersController : Controller
     {
         private ApplicationUserManager _AppUserManager = null;
-        
+
         protected ApplicationUserManager AppUserManager
         {
-            get
-            {
-                return _AppUserManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
+            get { return _AppUserManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
         }
 
         [HttpGet]
         public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult NotAllowed()
         {
             return View();
         }
@@ -58,7 +63,7 @@ namespace Security.IdentityManagementTool.Controllers
             };
 
             IdentityResult result = AppUserManager.Create(applicationUser, user.Password);
-            
+
             var usr = AppUserManager.FindByEmail(applicationUser.Email);
 
             AppUserManager.AddToRole(usr.Id, user.Role);
@@ -71,27 +76,23 @@ namespace Security.IdentityManagementTool.Controllers
         {
             var applicationUser =
                 AppUserManager.FindByEmail(email);
-            
+
             return Json(applicationUser, JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize]
+        [Auth]
         public ActionResult Users()
         {
-            var user = User as ClaimsPrincipal;
-            var token = user.FindFirst("access_token").Value;
             return View();
         }
 
         [Authorize]
         public ActionResult GetUsers()
         {
-            var users = AppUserManager.Users.Select(x => new { x.FirstName, x.LastName, x.Email, x.Id }).ToList();
-            return Json(users,JsonRequestBehavior.AllowGet);
+            var users = AppUserManager.Users.Select(x => new {x.FirstName, x.LastName, x.Email, x.Id}).ToList();
+            return Json(users, JsonRequestBehavior.AllowGet);
         }
 
-     
-        [HttpDelete]
         public ActionResult Delete(string id)
         {
             var user = AppUserManager.FindById(id);

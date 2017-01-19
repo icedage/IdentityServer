@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using IdentityServer3.Core.Configuration;
 using IdentityServer3.Core.Services;
 using Microsoft.Owin;
@@ -45,11 +46,8 @@ namespace Security.AuthorizationServer
 
         X509Certificate2 LoadCertificate()
         {
-            //return new X509Certificate2(
-            //    string.Format(@"C:\Users\veronica.zotali\Documents\visual studio 2015\Projects\Security\Server\bin\idsrv3test.pfx"), "idsrv3test");
-
             return new X509Certificate2(
-              string.Format(@"C:\projects\Security\Security.AuthorizationServer\bin\idsrv3test.pfx"), "idsrv3test");
+              $"{AppDomain.CurrentDomain.BaseDirectory}\\bin\\idsrv3test.pfx", "idsrv3test");
         }
     }
 }

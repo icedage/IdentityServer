@@ -382,14 +382,11 @@ namespace Security.IdentityManagementTool.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            Request.GetOwinContext().Authentication.SignOut();
+            return Redirect("/");
         }
 
         //

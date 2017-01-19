@@ -51,6 +51,7 @@ namespace Security.IdentityManagementTool.Controllers
             return Json(role, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize]
         public ActionResult Roles()
         {
             return View();

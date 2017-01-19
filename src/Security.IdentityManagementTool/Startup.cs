@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Helpers;
+using Microsoft.IdentityModel.Protocols;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
@@ -28,7 +29,7 @@ namespace Security.IdentityManagementTool
                 ClientId = "IdentityManagementTool",
                 
                 //In the Scope we ask what to include
-                Scope = "openid profile roles",
+                Scope = "openid profile roles WebAPI",
                 RedirectUri = "http://localhost:55112/",
                 ResponseType = "id_token token",
                 SignInAsAuthenticationType = "Cookies",
@@ -58,7 +59,21 @@ namespace Security.IdentityManagementTool
                         n.AuthenticationTicket = new AuthenticationTicket( nid, n.AuthenticationTicket.Properties);
                        
                         return Task.FromResult(0);
-                    }                    
+                    },
+                    RedirectToIdentityProvider = n =>
+                    {
+                        if (n.ProtocolMessage.RequestType == OpenIdConnectRequestType.LogoutRequest)
+                        {
+                            var idTokenHint = n.OwinContext.Authentication.User.FindFirst("id_token");
+
+                            if (idTokenHint != null)
+                            {
+                                n.ProtocolMessage.IdTokenHint = idTokenHint.Value;
+                            }
+                        }
+
+                        return Task.FromResult(0);
+                    }
                 }
             });
 

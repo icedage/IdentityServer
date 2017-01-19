@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:wheat">
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -21,24 +21,19 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("New User", "Create", "Users")</li>
-                    <li style="background-color: firebrick">@Html.ActionLink("Users", "Users", "Users")</li>
+                    <li>@Html.ActionLink("Users", "Users", "Users")</li>
                     <li>@Html.ActionLink("New Role", "Create", "Roles")</li>
-                    <li style="background-color: firebrick">@Html.ActionLink("Roles", "Roles", "Home")</li>
+                    <li>@Html.ActionLink("Roles", "Roles", "Roles")</li>
+                    <li>@Html.ActionLink("Log out", "LogOff", "Account")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @*@Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
 
-    @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
