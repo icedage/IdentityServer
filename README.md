@@ -10,9 +10,7 @@ II) Database
 
 Security.IdentityManagementTool uses Identity to Create users and roles. So, you will need an instance of the AspNetIdentity in your Sql Server. I am using EntityFramework, so all you need to do is the following:
 
-Enable Migrations
-
-Update database
+Update-database
 
 III) Run Projects
 
