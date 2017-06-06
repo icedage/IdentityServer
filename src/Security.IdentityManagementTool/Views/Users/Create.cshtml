@@ -27,11 +27,12 @@
             <input class="easyui-textbox" id="Username" label="Username:" labelPosition="top" style="width:100%;height:52px">
         </div>
         <div style="margin-bottom:20px">
-            <input class="easyui-textbox" id="Password" label="Password:" labelPosition="top" style="width:100%;height:52px">
+            <input class="easyui-textbox" id="Password" label="Password:" labelPosition="top" style="width:100%;height:52px" type="password">
         </div>
         <div>
             <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="submitForm()" style="width:100%;height:32px">Register</a>
         </div>
+		<div id="ErrorText" class="easyui-error"></div>
     </div>
     <script>
         function submitForm() {
@@ -43,12 +44,32 @@
                 Username: $("#Username").val(),
                 Password: $("#Password").val()
             }
+        	/*public class UserModel : IdentityUser
+    {
+        public string FirstName { get; set; }
 
+        public string LastName { get; set; }
+
+        public string Password { get; set; }
+
+        public string Role { get; set; }
+		
+		
+		
+		*/
             $.ajax({
                 type: 'POST',
-                url: "CreateAsync",
+                url: "/Users/CreateAsync",
                 data: user,
                 dataType: "application/json",
+                error: function (jqXHR, txtStatus, errorThrown, data)
+                {
+                	document.getElementById("ErrorText").innerHTML = jqXHR.responseText;
+
+                	console.log(jqXHR);
+                	if (jqXHR.state === 200)
+                		window.location = '/users/users';
+                },
                 success: function (data) {
                     window.location = '/users/users';
                 }

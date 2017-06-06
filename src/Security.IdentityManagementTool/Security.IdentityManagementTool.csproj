@@ -1091,6 +1091,7 @@
     <Content Include="Views\Users\Users.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Roles.cshtml" />
+    <Content Include="Views\Users\CreateAsync.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

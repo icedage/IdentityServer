@@ -62,6 +62,7 @@
         <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">Save</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancel</a>
     </div>
+	<div id="ErrorText"></div>
     <script type="text/javascript">
           
         function saveUser() {
@@ -73,7 +74,16 @@
                 type: 'POST',
                 url: "/users/AddRoles",
                 data: { userid :id ,roles : roles },
-                dataType: "application/json"
+                dataType: "application/json",
+                error: function (jqXHR, txtStatus, errorThrown, data) {
+                	document.getElementById("ErrorText").innerHTML = jqXHR.responseText;
+
+                	console.log(jqXHR);
+                },
+                success: function (data) {
+                	alert("success");
+
+                }
             });
         }
 

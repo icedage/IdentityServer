@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.Owin;
 using RestSharp;
 using Security.IdentityManagementTool.Models;
 using Security.IdentityManagementTool.Filters;
+using Newtonsoft.Json;
 
 namespace Security.IdentityManagementTool.Controllers
 {
@@ -33,25 +34,69 @@ namespace Security.IdentityManagementTool.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<ActionResult> CreateAsync(UserModel user)
+
+		[HttpPost]
+		public async Task<ActionResult> CreateAsync(PostUserModel user)
+		{
+			var applicationUser = new ApplicationUser()
+			{
+				UserName = user.UserName,
+				Email = user.Email,
+				FirstName = user.FirstName,
+				LastName = user.LastName,
+				BirthDate = System.DateTime.Now
+			};
+
+			IdentityResult result = await AppUserManager.CreateAsync(applicationUser, user.Password);
+
+			if (!result.Succeeded)
+			{
+				throw new Exception("ERROR:" + result.Errors.FirstOrDefault());
+			}
+			
+			return View();
+		}
+
+		[HttpPost]
+        public async Task<JsonResult> CreateAsync1(PostUserModel user)
         {
-            var applicationUser = new ApplicationUser()
-            {
-                UserName = user.UserName,
-                Email = user.Email,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                BirthDate = DateTime.Now
+			var applicationUser = new ApplicationUser()
+			{
+				UserName = user.UserName,
+				Email = user.Email,
+				FirstName = user.FirstName,
+				LastName = user.LastName,
+				BirthDate = System.DateTime.Now
             };
 
             IdentityResult result = await AppUserManager.CreateAsync(applicationUser, user.Password);
+			
+			var returnAction = new JsonResult();
+			returnAction.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
 
-            return View();
-        }
+			string responseJson = "";
+			if (result.Succeeded)
+			{
+				responseJson = JsonConvert.SerializeObject(JsonConvert.SerializeObject(result), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+				HttpContext.Response.StatusDescription = "OK";
+				//HttpContext.Response.StatusCode = 200;
+			}
+			else
+			{
+				responseJson = JsonConvert.SerializeObject(JsonConvert.SerializeObject(result.Errors), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+				HttpContext.Response.StatusDescription = "OK";
+				HttpContext.Response.StatusCode = 404;
+			}
 
-        [HttpPost]
-        public ActionResult CreateUserRole(UserModel user)
+			returnAction.ContentType = "application/json";
+			returnAction.ContentEncoding = System.Text.Encoding.UTF8;
+			returnAction.Data = responseJson;
+
+			return returnAction;
+		}
+
+		[HttpPost]
+        public ActionResult CreateUserRole(PostUserRoleModel user)
         {
             var applicationUser = new ApplicationUser()
             {
@@ -59,16 +104,21 @@ namespace Security.IdentityManagementTool.Controllers
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                BirthDate = DateTime.Now
             };
 
             IdentityResult result = AppUserManager.Create(applicationUser, user.Password);
 
             var usr = AppUserManager.FindByEmail(applicationUser.Email);
 
-            AppUserManager.AddToRole(usr.Id, user.Role);
-
-            return View();
+            var ir = AppUserManager.AddToRole(usr.Id, user.Role);
+			if (ir.Succeeded)
+			{				
+				return View();
+			}
+			else
+			{
+				throw new Exception("AddToRoles failed " + ir.Errors.FirstOrDefault());
+			}
         }
 
         [HttpGet]
@@ -97,14 +147,30 @@ namespace Security.IdentityManagementTool.Controllers
         {
             var user = AppUserManager.FindById(id);
 
-            AppUserManager.Delete(user);
+            var ir=AppUserManager.Delete(user);
 
-            return Json("success");
-        }
+			if (ir.Succeeded)
+			{
+				return Json("success");
+			}
+			else
+			{
+				throw new Exception("AddToRoles failed " + ir.Errors.FirstOrDefault());
+			}
+		}
 
-        public void AddRoles(string userId, string[] roles)
+        public ActionResult AddRoles(string userId, string[] roles)
         {
-            AppUserManager.AddToRoles(userId, roles);
-        }
-    }
+            var ir = AppUserManager.AddToRoles(userId, roles);
+			if (ir.Succeeded)
+			{
+				return Json("success");
+			}
+			else
+			{
+				throw new Exception("AddToRoles failed " + ir.Errors.FirstOrDefault());
+			}
+
+		}
+	}
 }
