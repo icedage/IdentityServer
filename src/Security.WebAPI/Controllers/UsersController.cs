@@ -4,7 +4,7 @@ namespace Security.WebAPI.Controllers
 {
     public class UsersController : ApiController
     {
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpGet]
         public IHttpActionResult Get()
         {
